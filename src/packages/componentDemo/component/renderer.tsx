@@ -1,7 +1,7 @@
 import './style.less';
 import langList from './locales';
 
-export default function (dependencies) {
+export default function (dependencies: ) {
   const { Component } = dependencies.kernel;
   const { showThirdPart, isOpenLink, hideThirdPartDialog, parseUrl, decode, isImmutable, i18n } = dependencies.utils;
   // i18n 测试

@@ -1,31 +1,12 @@
-# empty-project
+# enow remote components
 
-Empty project.
+## 命令
 
-## Building and running on localhost
-
-First install dependencies:
-
-```sh
-npm install
-```
-
-To create a production build:
-
-```sh
-npm run build-prod
-```
-
-To create a development build:
-
-```sh
-npm run build-dev
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
+````
+// 安装
+yarn
+// 开发
+yarn start
+// 打包
+yarn build
+````

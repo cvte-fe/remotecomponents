@@ -1,48 +1,7 @@
-const webpack = require('webpack');
-const path = require('path');
+const env = process.env.NODE_ENV
+let envName = 'dev'
+if (env === 'production' || env === 'prod') {
+   envName = 'prod'
+}
 
-const config = {
-   mode: 'development',
-   entry: {
-      componentDemo: './src/packages/componentDemo/index.tsx',
-   },
-   output: {
-      path: path.resolve(__dirname, '../dist'),
-      filename: '[name].bundle.js',
-      libraryTarget: 'umd',
-      library: 'remoteComponent',
-      umdNamedDefine: true,
-   },
-   module: {
-      rules: [
-         {
-            test: /\.(js|jsx)$/,
-            use: 'babel-loader',
-            exclude: /node_modules/
-         },
-         {
-            test: /\.ts(x)?$/,
-            use: ['babel-loader'],
-            exclude: /node_modules/
-         },
-         {
-            test: /\.less$/,
-            use: [
-               'style-loader',
-               'css-loader',
-               'less-loader'
-            ]
-         }
-      ]
-   },
-   resolve: {
-      extensions: [
-         '.js',
-         '.jsx',
-         '.tsx',
-         '.ts'
-      ]
-   }
-};
-
-module.exports = config;
+module.exports = require('./webpack.config.' + envName);

@@ -4,19 +4,19 @@ module.exports = function (api) {
   console.log('-----babel start----');
 
   const presets = [
-    // [
-    //   '@babel/preset-env',
-    //   {
-    //     useBuiltIns: 'entry',
-    //     corejs: 3,
-    //   },
-    // ],
-    // '@babel/preset-typescript',
+    [
+      '@babel/preset-env',
+      {
+        useBuiltIns: 'entry',
+        corejs: 3,
+      },
+    ],
+    '@babel/preset-typescript',
   ];
 
   const plugins = [
-    // '@babel/plugin-proposal-object-rest-spread',
-    // '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-proposal-class-properties',
   ];
 
   return {

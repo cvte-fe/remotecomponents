@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "importHelpers": true,
+    // 跳过所有声明文件的类型检查
+    "moduleResolution": "node",
+    "declaration": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    // "noImplicitAny": true,
+    // /* Raise error on expressions and declarations with an implied 'any' type. */
+    "strictNullChecks": true,
+    // /* Enable strict null checks. */
+    "noImplicitThis": true,
+    // /* Raise error on 'this' expressions with an implied 'any' type. */
+    "alwaysStrict": true,
+    //json
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    // /* Parse in strict mode and emit "use strict" for each source file. */
+    // /* Additional Checks */
+    // "noUnusedLocals": true,
+    // /* Report errors on unused locals. */
+    // "noUnusedParameters": true,
+    // /* Report errors on unused parameters. */
+    "noImplicitReturns": true,
+    // /* Report error when not all code paths in function return a value. */
+    "noFallthroughCasesInSwitch": false,
+    "outDir": "./build"
+  },
+  "include": ["packages/*/src/**/*.tsx", "packages/enow-component-utils/src/importScript.ts"],
+  "exclude": []
+}

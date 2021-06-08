@@ -1,19 +1,8 @@
 import './style.less';
-import langList from './locales';
 
 export default function (dependencies) {
   const { Component } = dependencies.kernel;
-  const { showThirdPart, isOpenLink, hideThirdPartDialog, parseUrl, decode, isImmutable, i18n } = dependencies.utils;
-  // i18n 测试
-  const addResources = () => {
-    Object.keys(langList).forEach((lang) => {
-      i18n.addResources(lang, 'teachingDrawingBoard', langList[lang]);
-    });
-  }
-
-  addResources();
-  i18n.on('initialized', () => { addResources() });
-  // i18n 测试 end
+  const { showThirdPart, isOpenLink, hideThirdPartDialog, parseUrl, decode, isImmutable } = dependencies.utils;
   return class ComponentRenderer extends Component {
     title = '';
     url = '';
@@ -144,7 +133,7 @@ export default function (dependencies) {
           >
             <img
               src={thumb}
-              alt={i18n.t('teachingDrawingBoard:capture') /* "截图" */}
+              alt={'截图'}
               style={{
                 display: 'block',
                 height: `100%`,
@@ -163,7 +152,7 @@ export default function (dependencies) {
             onmouseup={this.showThirdPart.bind(this)}
             ontouchend={this.showThirdPart.bind(this)}
           >
-            {i18n.t('teachingDrawingBoard:open_online_board') /* 打开在线画板 */}
+            打开在线画板
           </div>
         </div>
       );

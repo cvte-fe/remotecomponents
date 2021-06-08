@@ -17,27 +17,24 @@ export default function (dependencies) {
       })
     }
 
-    toJsonx() {
-      const { x, y, width, height } = this.topmodel;
-      return {
-        remoteComponent: {
-          x,
-          y,
-          width,
-          height,
-        }
-      }
-    }
+    // toJsonx() {
+    //   const { x, y, width, height } = this.topmodel;
+    //   return {
+    //     remoteComponent: {
+    //       x,
+    //       y,
+    //       width,
+    //       height,
+    //     }
+    //   }
+    // }
 
     toModelJson(jsonx) {
-      console.error('toModelJsontoModelJsontoModelJson', jsonx, nameCamel)
       const jsonxContent = jsonx[nameCamel];
       const superJson = super.toModelJson(jsonxContent);
 
       return {
         ...superJson,
-        title: jsonxContent.title,
-        thumbUri: jsonxContent.thumbUri,
         _type: name,
         _name: name,
       };

@@ -12,10 +12,10 @@ export default function installer(dependencies) {
     }
     const tooltip = {
       title: '插入',
-      describe: '点击插入数学画板'
+      describe: '点击插入元素'
     }
     return (
-      <div 
+      <div
         style={{
           padding: '12px',
         }}>

@@ -24,10 +24,7 @@ export default function (dependencies) {
 
     createIframeSrc() {
       // 测试环境无数学画板内容，需用生产环境
-      const easinoteUrl = 'https://easinote.seewo.com/embedpc3/cola/detail/fullscreen';
-      const url = parseUrl(decode(this.url));
-      const params = (url && url.params) || {};
-      return `${easinoteUrl}?id=${params.id}&title=${params.title}&auth=1&closable=0&preview=1`;
+      return 'https://www.baidu.com'
     }
 
     emitEvent(eventName) {

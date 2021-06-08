@@ -1,5 +1,3 @@
-import './style.less';
-
 export default function (dependencies) {
   const { Component } = dependencies.kernel;
   const { showThirdPart, isOpenLink, hideThirdPartDialog, parseUrl, decode, isImmutable } = dependencies.utils;

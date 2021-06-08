@@ -5,6 +5,7 @@ const config = {
    optimization: {
       minimize: false
    },
+   mode: 'development'
 };
 
 module.exports = Object.assign({}, baseConfig, config);

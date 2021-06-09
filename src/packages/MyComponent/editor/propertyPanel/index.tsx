@@ -1,4 +1,4 @@
-import DemoPanelComponent from './DemoPanelComponent';
+import DemoPanelComponent from './panel';
 
 export default function install(dependencies) {
   return {

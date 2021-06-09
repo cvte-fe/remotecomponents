@@ -10,6 +10,11 @@ const port = 7788;
 const server = new WebpackDevServer(webpack(config), {
   contentBase: './dist',
   writeToDisk: true,
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+  }
 });
 
 server.listen(port, '127.0.0.1', function (err) {

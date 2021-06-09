@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const entry = require('./utils/entry');
+const AssetsPlugin = require('assets-webpack-plugin')
+const assetsPluginInstance = new AssetsPlugin()
 
 const config = {
    entry,
@@ -11,6 +13,7 @@ const config = {
       library: 'remoteComponent',
       umdNamedDefine: true,
    },
+   plugins: [assetsPluginInstance],
    module: {
       rules: [
          {

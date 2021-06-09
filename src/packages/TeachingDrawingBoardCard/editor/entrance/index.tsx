@@ -1,4 +1,4 @@
-import EntranceComponent from './EntranceComponent';
+import EntranceComponent from './entrance';
 
 export default function install(dependencies) {
   return {

@@ -9,32 +9,10 @@ export default function(dependencies) {
 
     // 模型字段
     static fields = {
-      title: 'string',
-      thumb: 'string',
-      thumbUri: 'string',
-      displayUrl: 'string',
-      scaleRatio: 'object',
-      originWidth: 'number',
-      originHeight: 'number',
-      isShowDialog: 'object',
-      isFromSDK: 'boolean',
     };
 
     // 默认数据
     static defaultData = {
-      ctrlRatioLocked: true,
-      title: '',
-      thumb: '',
-      thumbUri: '',
-      displayUrl: '',
-      scaleRatio: {
-        width: 1,
-        height: 1,
-      },
-      originHeight: 0,
-      originWidth: 0,
-      isShowDialog: { flag: false },
-      isFromSDK: false,
     };
 
     // TODO 必须!!!
@@ -43,30 +21,30 @@ export default function(dependencies) {
     //   return jsonx;
     // }
 
-    resize(width, height, scale) {
-      const scaleRatio = {
-        width: width / this.get('originWidth'),
-        height: height / this.get('originHeight'),
-      };
-      this.merge({
-        scaleRatio,
-        width,
-        height,
-      });
-    }
+    // resize(width, height, scale) {
+    //   const scaleRatio = {
+    //     width: width / this.get('originWidth'),
+    //     height: height / this.get('originHeight'),
+    //   };
+    //   this.merge({
+    //     scaleRatio,
+    //     width,
+    //     height,
+    //   });
+    // }
 
-    // 转换数据以适应模型
-    static transform(modelData) {
-      return modelData.merge({
-        originWidth: modelData.get('width'),
-        originHeight: modelData.get('height'),
-      });
-    }
+    // // 转换数据以适应模型
+    // static transform(modelData) {
+    //   return modelData.merge({
+    //     originWidth: modelData.get('width'),
+    //     originHeight: modelData.get('height'),
+    //   });
+    // }
 
-    // 在模型实例化前会调用该方法检查是否不需要渲染，只有返回true才会不渲染
-    static notRender(props, context) {
-      return false;
-    }
+    // // 在模型实例化前会调用该方法检查是否不需要渲染，只有返回true才会不渲染
+    // static notRender(props, context) {
+    //   return false;
+    // }
 
     // 初始化模型
     init(props) {

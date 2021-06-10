@@ -18,6 +18,6 @@ export default function (dependencies) {
           自定义元素内容
         </div>
       );
-      }
     }
+  }
 }

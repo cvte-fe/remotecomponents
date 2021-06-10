@@ -10,8 +10,7 @@ export default function installer(dependencies) {
       const enow = enowSDK.getEnowInstance();
       if (enow) {
         // 生成初始 model 数据
-        const model = await window.ENOWSDK_NOTE._kernel.componentManager.getComponentModelByTypeAsync(name);
-        const modelDataInitial = model.creator({
+        const modelDataInitial = await enow.element.common.proxyElementStaticMethod(name, 'creator', {
           x: 100,
           y: 100,
           width: 211,
@@ -20,17 +19,7 @@ export default function installer(dependencies) {
           thumb: '',
           thumbUri: 'http://store-g1.seewo.com/enow-cloud_assets/e77d11ec08a5f0bd773291bffd4d1da6',
           displayUrl: 'http://www.baidu.com'
-        })
-        // const modelDataInitial = enow.element.common.proxyElementStaticMethod('teachingDrawingBoardCard', 'creator', {
-        //   x: 100,
-        //   y: 100,
-        //   width: 211,
-        //   height: 269,
-        //   title: '数学画板示例',
-        //   thumb: '',
-        //   thumbUri: 'http://store-g1.seewo.com/enow-cloud_assets/e77d11ec08a5f0bd773291bffd4d1da6',
-        //   displayUrl: 'http://www.baidu.com'
-        // });
+        });
         // 向画布添加元素
         enow.element.common.addElements([modelDataInitial]);
       }

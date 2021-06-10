@@ -2,7 +2,7 @@ import { name, nameCamel } from "../const";
 
 export default function (dependencies) {
   const { ElementSaveInfo } = dependencies.saveInfo;
-  return class PictureSaveInfo extends ElementSaveInfo {
+  return class RemoteComponentSaveInfo extends ElementSaveInfo {
     constructor(data) {
       super(data);
       this.topmodel = {};

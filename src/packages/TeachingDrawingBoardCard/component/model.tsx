@@ -1,95 +1,71 @@
+import { name } from '../const';
+interface ICreateParams {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  title: string;
+  thumb: string;
+  thumbUri: string
+  displayUrl: string;
+}
+
 export default function(dependencies) {
   const { ElementModel } = dependencies.kernel;
+  const { uuid } = dependencies.utils;
   return class ComponentModel extends ElementModel {
-    // 是否开始debug输出
-    static isDebug = false;
-
-    // 是否清除没有在模型定义的数据
-    static isRemoveAddition = true;
-
     // 模型字段
     static fields = {
       title: 'string',
       thumb: 'string',
       thumbUri: 'string',
       displayUrl: 'string',
-      scaleRatio: 'object',
-      originWidth: 'number',
-      originHeight: 'number',
-      isShowDialog: 'object',
-      isFromSDK: 'boolean',
+      titleColor: 'string?',
     };
 
     // 默认数据
     static defaultData = {
-      ctrlRatioLocked: true,
       title: '',
       thumb: '',
       thumbUri: '',
       displayUrl: '',
-      scaleRatio: {
-        width: 1,
-        height: 1,
-      },
-      originHeight: 0,
-      originWidth: 0,
-      isShowDialog: { flag: false },
-      isFromSDK: false,
-    };
+      titleColor: 'rgba(255, 0, 0, 1)'
+    }
 
-    // TODO 必须!!!
-    // static toJsonx(modelData) {
-    //   const jsonx = new TeachingDrawingBoardCardSaveInfo(modelData).toJsonx();
-    //   return jsonx;
-    // }
-
-    resize(width, height, scale) {
-      const scaleRatio = {
-        width: width / this.get('originWidth'),
-        height: height / this.get('originHeight'),
-      };
-      this.merge({
-        scaleRatio,
+    static creator(params: ICreateParams) {
+      const { x, y, width, height, title, thumb, thumbUri, displayUrl } = params;
+      const modelData = {
+        ...ElementModel.getBaseInitModelData(), // 调用 ElementModel 提供的创建元素基础默认数据的方法
+        id: uuid(), // 该元素的唯一id
+        _type: name,
+        x,
+        y,
         width,
         height,
-      });
+        title,
+        thumb,
+        thumbUri,
+        displayUrl
+      }
+      return modelData; // 返回元素数据
     }
 
-    // 转换数据以适应模型
-    static transform(modelData) {
-      return modelData.merge({
-        originWidth: modelData.get('width'),
-        originHeight: modelData.get('height'),
-      });
-    }
-
-    // 在模型实例化前会调用该方法检查是否不需要渲染，只有返回true才会不渲染
-    static notRender(props, context) {
-      return false;
-    }
-
-    // 初始化模型
-    init(props) {
-      // console.log(props);
-    }
-
-    /** enow-SDK方法 start */
-
-    /**
-     * 显示第三方资源
-     */
-    openDialog() {
-      this.merge({ isShowDialog: { flag: true }, isFromSDK: true });
-    }
-
-    /**
-     * 关闭第三方资源
-     */
-    closeDialog() {
-      this.merge({ isShowDialog: { flag: false }, isFromSDK: true });
-    }
-
-    /** enow-SDK方法 end */
+    // 设置属性
+  public setEditableProperty(property) {
+    const self: any = this;
+    super.setEditableProperty(property);
+    self.set('titleColor', property.titleColor);
+  }
+  // 获取属性
+  public getEditableProperty() {
+    const self: any = this;
+    const commonProp = super.getEditableProperty() || {}; // 获取公用的属性（包括x,y,width,height)
+    return {
+      ...commonProp,
+      titleColor: self.get('titleColor'),
+      _type: self.get('_type')
+    };
+  }
   }
 
 }

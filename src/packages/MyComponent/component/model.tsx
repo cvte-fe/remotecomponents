@@ -15,37 +15,6 @@ export default function(dependencies) {
     static defaultData = {
     };
 
-    // TODO 必须!!!
-    // static toJsonx(modelData) {
-    //   const jsonx = new TeachingDrawingBoardCardSaveInfo(modelData).toJsonx();
-    //   return jsonx;
-    // }
-
-    // resize(width, height, scale) {
-    //   const scaleRatio = {
-    //     width: width / this.get('originWidth'),
-    //     height: height / this.get('originHeight'),
-    //   };
-    //   this.merge({
-    //     scaleRatio,
-    //     width,
-    //     height,
-    //   });
-    // }
-
-    // // 转换数据以适应模型
-    // static transform(modelData) {
-    //   return modelData.merge({
-    //     originWidth: modelData.get('width'),
-    //     originHeight: modelData.get('height'),
-    //   });
-    // }
-
-    // // 在模型实例化前会调用该方法检查是否不需要渲染，只有返回true才会不渲染
-    // static notRender(props, context) {
-    //   return false;
-    // }
-
     // 初始化模型
     init(props) {
       // console.log(props);

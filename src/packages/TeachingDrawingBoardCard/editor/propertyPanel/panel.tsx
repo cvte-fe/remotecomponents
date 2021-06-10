@@ -1,49 +1,49 @@
 import './style.less';
+import { name } from '../../const'; // 从统一的位置获取本元素的名称
 
 export default function Installer(dependencies) {
   const { React, UIComponents, enowSDK } = dependencies;
   const {
-    BtnGroup
+    ColorSelector
   } = UIComponents;
+  const COLOR_ELECTOR_ID = 'COLOR_ELECTOR_ID';
   return function DemoPanelComponent(props) {
-    const {
-      currentActEles
-    } = props;
-    const moveElement = (direction) => {
+    const { useState, useEffect } = React;
+    const { currentActEles } = props;
+    const [color, setColor] = useState('rgba(0,0,0,1)');
+
+    useEffect(() => {
+      const target = currentActEles.find(ele => ele._type === name);
+      const targetColor = target.titleColor;
+      setColor(targetColor);
+    }, [currentActEles])
+
+    const handleColorChange = (newColor) => {
+      setColor(newColor);
       const enow = enowSDK.getEnowInstance();
       if (enow) {
-        direction === 'undo' ? enow.stage.goBackActions() : enow.stage.redoActions();
+        currentActEles.forEach(ele => {
+          enow.editor.element.common.setEditableProperty([
+            // 需要传入元素的id，可以从currentActEles获取，也可以从getEditableProperty获取
+            { id: ele.id, titleColor: newColor }
+          ])
+        })
       }
     }
+  
     const tooltip = {
-      title: '撤销重做',
-      describe: '点击按钮进行撤销重做',
+      title: '这是一个颜色选择器',
+      describe: '可以用来修改颜色'
     }
+
     return (
       <div>
-        <div className={'move-btn-title'}>撤销重做</div>
-        <BtnGroup
-          className={'btn-group'}
-          btns={[
-            {
-              content: (
-                <div className={'btn-group-item'}>
-                  Undo
-                </div>
-              ),
-              tooltip: tooltip,
-              onClick: () => moveElement('undo'),
-            },
-            {
-              content: (
-                <div className={'btn-group-item'}>
-                  Redo
-                </div>
-              ),
-              tooltip: tooltip,
-              onClick: () => moveElement('redo'),
-            }
-          ]}
+        <div className={'move-btn-title'}>修改标题颜色: </div>
+        <ColorSelector
+          tooltip={tooltip}
+          colorSelectorId={COLOR_ELECTOR_ID}
+          value={color}
+          onChange={handleColorChange}
         />
       </div>
     )

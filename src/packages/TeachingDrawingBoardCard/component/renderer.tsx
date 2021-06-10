@@ -2,128 +2,59 @@ import './style.less';
 
 export default function (dependencies) {
   const { Component } = dependencies.kernel;
-  const { showThirdPart, isOpenLink, hideThirdPartDialog, parseUrl, decode, isImmutable } = dependencies.utils;
+  const { showThirdPart } = dependencies.utils;
   return class ComponentRenderer extends Component {
-    title = '';
-    url = '';
     constructor(props, context) {
       super(props, context);
+      this.model = props.model;
     }
 
-    getSlide() {
-      const { modelManager } = this.context;
-      const currentSlideId = this.getSlideId();
-      return modelManager.getSlide(currentSlideId);
-    }
+    handleClick() {
 
-    getSlideId() {
-      const { modelManager } = this.context;
-      const stageModel = modelManager.getStage();
-      return stageModel.getCurrentSlideId();
-    }
-
-    createIframeSrc() {
-      // 测试环境无数学画板内容，需用生产环境
-      return 'https://www.baidu.com'
-    }
-
-    emitEvent(eventName) {
-      this.context.eventEmitter.emit(eventName, {
-        slideId: this.getSlideId(),
-        id: this.props.model.get('id')
-      })
-    }
-
-    showThirdPart() {
-      this.context.fridayReporter.report('sketchpad_open');
-      const slide = this.getSlide();
-      const slideWidth = slide.get('width');
-      const slideHeight = slide.get('height');
-
-      if (!isOpenLink(this, slideWidth, slideHeight)) {
-        return;
-      }
-
-      this.emitEvent('element.ThirdPart.openDialog');
       showThirdPart(
         {
-          title: this.title,
-          url: this.createIframeSrc(),
-          width: slideWidth,
-          height: slideHeight,
-          cb: () => {
-            this.context.fridayReporter.report('sketchpad_close');
-            this.emitEvent('element.ThirdPart.closeDialog');
-          },
+          title: this.model.get('title', ''),
+          url: this.model.get('displayUrl', '')
         },
         0,
       );
     }
 
-    componentDidUpdate() {
-      const { model } = this.props;
-      const isFromSDK = model.get('isFromSDK', false);
-      if (isFromSDK) {
-        const isShowDialog = model.get('isShowDialog', { flag: false });
-        if (isShowDialog.flag) {
-          this.showThirdPart();
-        } else {
-          this.emitEvent('element.ThirdPart.closeDialog');
-          hideThirdPartDialog();
-        }
-        model.set('isFromSDK', false);
-      }
-    }
-
-    clickEvent(e) {
-      // 避免选中图片的默认事件
-      e.preventDefault();
-    }
-
     render(props) {
       const { model } = props;
-      const originWidth = model.get('originWidth');
-      const originHeight = model.get('originHeight');
-      let scaleRatio = model.get('scaleRatio', { width: 1, height: 1 });
-      if (isImmutable(scaleRatio)) {
-        scaleRatio = scaleRatio.toJS();
-      }
+      const width = model.get('width');
+      const height = model.get('height');
       const styles = {
-        width: `${originWidth}px`,
-        height: `${originHeight}px`,
-        'transform-origin': 'top left',
-        transform: `scale(${scaleRatio.width}, ${scaleRatio.height})`,
+        width: `${width}px`,
+        height: `${height}px`,
       };
       const title = model.get('title', '');
       const thumb = model.get('thumb', '') || model.get('thumbUri', '');
-      this.url = model.get('displayUrl', '');
-      this.title = title;
+      const titleColor = model.get('titleColor', 'rgba(255, 0, 0, 1)')
       return (
         <div className="enow-teachingDrawingBoard"
-          style={styles}
-          ref={e => {
-            e && e.addEventListener('mousedown', this.clickEvent, false);
-          }}>
+          style={styles}>
           <div
             class="enow-teachingDrawingBoard-head"
             style={{
-              'font-size': `${originWidth * 0.076}px`,
+              'font-size': `${width * 0.076}px`,
             }}
           >
             <div
               class="enow-teachingDrawingBoard-head-text"
               style={{
-                height: `${originHeight * 0.18}px`,
-                'line-height': `${originHeight * 0.18}px`,
+                height: `${height * 0.18}px`,
+                'line-height': `${height * 0.18}px`,
+                color: titleColor
               }}
             >
-              {decode(title)}
+              {title}
             </div>
           </div>
           <div
             class="enow-teachingDrawingBoard-content"
             style={{
-              height: `${originHeight * 0.7}px`,
+              height: `${height * 0.7}px`,
               width: '100%',
               'pointer-events': 'none',
             }}
@@ -141,13 +72,11 @@ export default function (dependencies) {
           <div
             class="enow-teachingDrawingBoard-footer"
             style={{
-              height: `${originHeight * 0.12}px`,
-              'line-height': `${originHeight * 0.12}px`,
-              'font-size': `${originWidth * 0.06}px`,
+              height: `${height * 0.12}px`,
+              'line-height': `${height * 0.12}px`,
+              'font-size': `${width * 0.06}px`,
             }}
-            // onClick={this.showThirdPart.bind(this)}
-            onmouseup={this.showThirdPart.bind(this)}
-            ontouchend={this.showThirdPart.bind(this)}
+            onmouseup={this.handleClick.bind(this)}
           >
             打开在线画板
           </div>

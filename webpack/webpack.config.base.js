@@ -38,7 +38,11 @@ const config = {
          '.tsx',
          // '.ts'
       ]
-   }
+   },
+   externals: {
+      react: 'React',
+      'react-dom': 'ReactDom'
+    }
 };
 
 module.exports = config;

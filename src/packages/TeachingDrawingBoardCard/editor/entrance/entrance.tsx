@@ -2,10 +2,14 @@ import './style.less';
 import { name } from '../../const'; // 从统一的位置获取本元素的名称
 export default function installer(dependencies) {
   const { React, UIComponents, enowSDK } = dependencies;
+  const { useState, useEffect } = React
   const {
     BtnGroup
   } = UIComponents;
   return function EntranceComponent() {
+    useEffect(() => {
+      console.error('hahaha')
+    })
     const insertElement = async () => {
       const enow = enowSDK.getEnowInstance();
       if (enow) {

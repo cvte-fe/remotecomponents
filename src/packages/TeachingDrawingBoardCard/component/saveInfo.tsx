@@ -6,7 +6,6 @@ export default function (dependencies) {
     static isRemote = true;
 
     dataToJsonx() {
-      console.error('topmodel teaching', this.topmodel, this.data)
       return {
         [nameCamel]: {
           ...(this.toJsonx().common),

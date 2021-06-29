@@ -11,6 +11,7 @@
     "start": "node ./webpack/dev"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "react-hot-loader": "^4.13.0"
   },
   "devDependencies": {

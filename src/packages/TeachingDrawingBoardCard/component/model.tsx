@@ -29,7 +29,7 @@ export default function(dependencies) {
       thumb: '',
       thumbUri: '',
       displayUrl: '',
-      titleColor: 'rgba(255, 0, 0, 1)'
+      titleColor: 'rgba(0, 255, 0, 1)'
     }
 
     static creator(params: ICreateParams) {

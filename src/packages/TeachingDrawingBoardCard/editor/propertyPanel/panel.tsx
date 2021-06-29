@@ -1,12 +1,13 @@
 import './style.less';
 import { name } from '../../const'; // 从统一的位置获取本元素的名称
-
+import { Input } from 'antd'
 export default function Installer(dependencies) {
   const { React, UIComponents, enowSDK } = dependencies;
   const {
     ColorSelector
   } = UIComponents;
   const COLOR_ELECTOR_ID = 'COLOR_ELECTOR_ID';
+  const { Search } = Input;
   return function DemoPanelComponent(props) {
     const { useState, useEffect } = React;
     const { currentActEles } = props;
@@ -38,6 +39,7 @@ export default function Installer(dependencies) {
 
     return (
       <div>
+        <Search placeholder="input search text" onSearch={() => {}} style={{ width: 200 }} />
         <div className={'move-btn-title'}>修改标题颜色: </div>
         <ColorSelector
           tooltip={tooltip}

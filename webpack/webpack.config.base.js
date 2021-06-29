@@ -41,8 +41,8 @@ const config = {
    },
    externals: {
       react: 'React',
-      'react-dom': 'ReactDom'
-    }
+      'react-dom': 'ReactDOM'
+   }
 };
 
 module.exports = config;

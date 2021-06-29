@@ -45,27 +45,27 @@ export default function(dependencies) {
         title,
         thumb,
         thumbUri,
-        displayUrl
+        displayUrl,
       }
       return modelData; // 返回元素数据
     }
 
     // 设置属性
-  public setEditableProperty(property) {
-    const self: any = this;
-    super.setEditableProperty(property);
-    self.set('titleColor', property.titleColor);
-  }
-  // 获取属性
-  public getEditableProperty() {
-    const self: any = this;
-    const commonProp = super.getEditableProperty() || {}; // 获取公用的属性（包括x,y,width,height)
-    return {
-      ...commonProp,
-      titleColor: self.get('titleColor'),
-      _type: self.get('_type')
-    };
-  }
+    public setEditableProperty(property) {
+      const self: any = this;
+      super.setEditableProperty(property);
+      self.set('titleColor', property.titleColor);
+    }
+    // 获取属性
+    public getEditableProperty() {
+      const self: any = this;
+      const commonProp = super.getEditableProperty() || {}; // 获取公用的属性（包括x,y,width,height)
+      return {
+        ...commonProp,
+        titleColor: self.get('titleColor'),
+        _type: self.get('_type')
+      };
+    }
   }
 
 }

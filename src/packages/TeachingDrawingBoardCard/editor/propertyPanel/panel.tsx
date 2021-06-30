@@ -23,12 +23,11 @@ export default function Installer(dependencies) {
       setColor(newColor);
       const enow = enowSDK.getEnowInstance();
       if (enow) {
-        currentActEles.forEach(ele => {
-          enow.editor.element.common.setEditableProperty([
-            // 需要传入元素的id，可以从currentActEles获取，也可以从getEditableProperty获取
-            { id: ele.id, titleColor: newColor }
-          ])
+        const newPropertySet = currentActEles.map(ele => {
+          // 需要传入元素的id，可以从currentActEles获取，也可以从getEditableProperty获取
+          return { id: ele.id, titleColor: newColor }
         })
+        enow.editor.element.common.setEditablePropertyAsync(newPropertySet);
       }
     }
   

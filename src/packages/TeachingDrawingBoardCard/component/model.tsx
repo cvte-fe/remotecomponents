@@ -51,9 +51,8 @@ export default function(dependencies) {
     }
 
     // 设置属性
-    public setEditableProperty(property) {
+    public async setEditablePropertyAsync(property) {
       const self: any = this;
-      super.setEditableProperty(property);
       self.set('titleColor', property.titleColor);
     }
     // 获取属性

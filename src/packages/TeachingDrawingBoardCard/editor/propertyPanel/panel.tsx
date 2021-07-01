@@ -31,7 +31,7 @@ export default function Installer(dependencies) {
         })
       }
     }
-  
+
     const tooltip = {
       title: '这是一个颜色选择器',
       describe: '可以用来修改颜色'

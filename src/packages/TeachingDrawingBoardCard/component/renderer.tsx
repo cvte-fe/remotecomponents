@@ -31,6 +31,16 @@ export default function (dependencies) {
       const title = model.get('title', '');
       const thumb = model.get('thumb', '') || model.get('thumbUri', '');
       const titleColor = model.get('titleColor', 'rgba(255, 0, 0, 1)')
+
+      if (this.props.isScreenshot) {
+        const style = {
+          'width': '100%',
+          'height': '100%',
+          'object-fit': 'cover',
+        }
+        return <img style={style} src="http://vcdnb.huoying666.com/images/20210410/465728b82e2fa80b9582e8f9efae1c4a/465728b82e.jpg_home-image-640"/>
+      }
+
       return (
         <div className="enow-teachingDrawingBoard"
           style={styles}>

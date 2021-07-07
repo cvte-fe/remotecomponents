@@ -30,7 +30,7 @@ export default function Installer(dependencies) {
         enow.editor.element.common.setEditablePropertyAsync(newPropertySet);
       }
     }
-  
+
     const tooltip = {
       title: '这是一个颜色选择器',
       describe: '可以用来修改颜色'

@@ -10,6 +10,12 @@ const port = 7788;
 
 const server = new WebpackDevServer(webpack(config), {
   static: path.resolve(__dirname, '../dist'),
+  client: {
+    overlay: {
+      warnings: false,
+      errors: true,
+    }
+  },
   devMiddleware: {
     writeToDisk: true,
   },

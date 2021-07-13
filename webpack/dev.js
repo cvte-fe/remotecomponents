@@ -1,5 +1,6 @@
 'use strict';
 process.env.NODE_ENV = 'development';
+const path = require('path');
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -8,8 +9,10 @@ const config = require('./webpack.config');
 const port = 7788;
 
 const server = new WebpackDevServer(webpack(config), {
-  contentBase: './dist',
-  writeToDisk: true,
+  static: path.resolve(__dirname, '../dist'),
+  devMiddleware: {
+    writeToDisk: true,
+  },
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",

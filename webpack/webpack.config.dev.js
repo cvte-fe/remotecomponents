@@ -5,7 +5,11 @@ const config = {
    optimization: {
       minimize: false
    },
-   mode: 'development'
+   mode: 'development',
+   output: {
+      ...baseConfig.output,
+      // filename: '[name].bundle.js',
+   },
 };
 
 module.exports = Object.assign({}, baseConfig, config);

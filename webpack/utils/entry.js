@@ -6,7 +6,7 @@ const main = () => {
    const packageDir = './src/packages'
    const addonDir = './src/addons'
 
-   entryByDir(packageDir, '')
+   entryByDir(packageDir, 'component-')
    entryByDir(addonDir, 'addon-')
 
    console.log('entry check! ', result)

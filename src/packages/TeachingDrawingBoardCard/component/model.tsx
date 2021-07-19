@@ -16,6 +16,7 @@ export default function(dependencies) {
   return class ComponentModel extends ElementModel {
     // 模型字段
     static fields = {
+      needCustomThumb: 'boolean',
       title: 'string',
       thumb: 'string',
       thumbUri: 'string',
@@ -25,6 +26,7 @@ export default function(dependencies) {
 
     // 默认数据
     static defaultData = {
+      needCustomThumb: true,
       title: '',
       thumb: '',
       thumbUri: '',

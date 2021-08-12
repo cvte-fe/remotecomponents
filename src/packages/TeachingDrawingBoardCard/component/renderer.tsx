@@ -38,7 +38,7 @@ export default function (dependencies) {
           'height': '100%',
           'object-fit': 'cover',
         }
-        return <img style={style} src="http://vcdnb.huoying666.com/images/20210410/465728b82e2fa80b9582e8f9efae1c4a/465728b82e.jpg_home-image-640"/>
+        return <img style={style} src="https://edu.seewo.com/res/head/1/default.png"/>
       }
 
       return (

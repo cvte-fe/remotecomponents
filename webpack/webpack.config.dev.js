@@ -1,14 +1,15 @@
 const baseConfig = require('./webpack.config.base')
 
 const config = {
-   devtool: "source-map",
+   // devtool: "source-map",
    optimization: {
       minimize: false
    },
-   mode: 'development',
+   mode: 'production',
+   // mode: 'development',
    output: {
       ...baseConfig.output,
-      // filename: '[name].bundle.js',
+      filename: '[name].bundle.js',
    },
 };
 

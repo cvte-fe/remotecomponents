@@ -7,9 +7,9 @@ export default function installer(dependencies) {
     BtnGroup
   } = UIComponents;
   return function EntranceComponent() {
-    useEffect(() => {
-      console.error('hahaha')
-    })
+    // useEffect(() => {
+    //   console.error('hahaha')
+    // })
     const insertElement = async () => {
       const enow = enowSDK.getEnowInstance();
       if (enow) {

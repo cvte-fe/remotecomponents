@@ -14,6 +14,10 @@ export default function(dependencies) {
     // 默认数据
     static defaultData = {
     };
+    
+    // 需要同步的事件列表
+    static liveEvents = [
+    ];
 
     // 初始化模型
     init(props) {
